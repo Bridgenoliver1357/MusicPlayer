@@ -11,9 +11,6 @@ import musicPlayer.frontEnd.PanelController;
 
 public class ChangePanelButton extends JButton implements ActionListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8239458504502982023L;
 	
 	protected PanelController controller;
