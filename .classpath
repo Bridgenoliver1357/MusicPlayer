@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/olive/Documents/Coding/Portfolio Projects/Music-Player/javax.activation-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/olive/Documents/Coding/Portfolio Projects/Music-Player/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/olive/Documents/Coding/Portfolio Projects/Music-Player/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/olive/Documents/Coding/Portfolio Projects/Music-Player/sqlite-jdbc-3.20.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
