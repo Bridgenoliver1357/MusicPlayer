@@ -10,7 +10,7 @@ import java.util.Random;
 public class Hashing {
 	//hashes the given string using SHA-512 and returns the hash plus the generated salt in one byte array
 	public static byte[] getHashWithoutSalt(String password) {
-		Random random = new SecureRandom();
+		SecureRandom random = new SecureRandom();
 		byte[] salt = new byte[16];
 		random.nextBytes(salt);
 		try {
@@ -41,6 +41,10 @@ public class Hashing {
 			return null;
 		}
 	}
+	
+//	public static byte[] getSaltFromHashSalt(byte[] hashSalt) {
+//		
+//	}
 	
 	//generates an encryption key based on the password hash of the user and the key salt
 	public static byte[] getEncryptionKey(byte[] hash, byte[] keySalt) {

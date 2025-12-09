@@ -2,7 +2,7 @@ package musicPlayer.frontEnd.panels;
 
 import javax.swing.JPanel;
 
-import musicPlayer.frontEnd.PanelController;
+import musicPlayer.frontEnd.FrameController;
 
 public class ResetPasswordPanel extends JPanel{
 	/**
@@ -12,7 +12,7 @@ public class ResetPasswordPanel extends JPanel{
 	
 	public static final int PANEL_ID = 2;
 
-	public ResetPasswordPanel(PanelController controller) {
+	public ResetPasswordPanel() {
 		
 		setBounds(0, 0, 725, 500);
 		setLayout(null);

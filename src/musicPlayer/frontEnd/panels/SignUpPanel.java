@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-import musicPlayer.frontEnd.PanelController;
+import musicPlayer.frontEnd.FrameController;
 import musicPlayer.frontEnd.components.ChangePanelButton;
 
 public class SignUpPanel extends JPanel {
@@ -21,13 +21,13 @@ public class SignUpPanel extends JPanel {
 	private JLabel titleLabel;
 	private JButton btnNewButton;
 
-	public SignUpPanel(PanelController controller) {
+	public SignUpPanel() {
 		
-		setBounds(PanelController.DEFAULT_PANEL_BOUNDS);
+		setBounds(FrameController.DEFAULT_PANEL_BOUNDS);
 		setLayout(null);
 		
 		titleLabel = new JLabel("Music Player");
-		btnNewButton = new ChangePanelButton("Login", controller, LoginPanel.PANEL_ID);
+		btnNewButton = new ChangePanelButton("Login", LoginPanel.PANEL_ID);
 		
 		setUpGUI();
 	}

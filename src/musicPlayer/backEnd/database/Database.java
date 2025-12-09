@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Database {
 	
-	private final String DATABASE_ADDRESS = "jdbc:sqlite:MusicDatabase.db";
+	private final String DATABASE_ADDRESS = "jdbc:sqlite:MusicDatabae.db";
 	
 	private static Connection conn;
 	private Statement stmt;
@@ -15,13 +15,17 @@ public class Database {
 		conn = DriverManager.getConnection(this.DATABASE_ADDRESS);
 	}
 	
+	public void close() throws SQLException {
+		conn.close();
+	}
+	
 	public void addCredentialsTable() throws SQLException {
 		stmt = conn.createStatement();
 		stmt.execute("CREATE TABLE IF NOT EXISTS Credentials (ID INTEGER NOT NULL UNIQUE, Username	VARCHAR, Email VARCHAR, Password BLOB, PRIMARY KEY(ID AUTOINCREMENT))");
 		stmt.close();
 	}
 	
-	public boolean addNewUser(String username, String email, byte[] password) {
+	public boolean addNewUser(String username, String email, byte[] password) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("INSERT INTO Credentials (Username, Email, Password) VALUES (?,?,?)");
 			pStmt.setString(1, username);
@@ -34,7 +38,7 @@ public class Database {
 		}
 	}
 	
-	public int getID(String username) {
+	public int getID(String username) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("SELECT ID FROM Credentials WHERE Username = ?");
 			pStmt.setString(1, username);
@@ -49,7 +53,7 @@ public class Database {
 		}
 	}
 	
-	public String getUsername(int ID) {
+	public String getUsername(int ID) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("SELECT Username FROM Credentials WHERE ID = ?");
 			pStmt.setInt(1, ID);
@@ -64,7 +68,7 @@ public class Database {
 		}
 	}
 	
-	public String getEmail(int ID) {
+	public String getEmail(int ID) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("SELECT Email FROM Credentials WHERE ID = ?");
 			pStmt.setInt(1, ID);
@@ -79,7 +83,7 @@ public class Database {
 		}
 	}
 	
-	public byte[] getPassword(int ID) {
+	public byte[] getPassword(int ID) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("SELECT Password FROM Credentials WHERE ID = ?");
 			pStmt.setInt(1, ID);
@@ -94,7 +98,22 @@ public class Database {
 		}
 	}
 	
-	public boolean setUsername(int ID, String username) {
+	public byte[] getSalt(int ID) throws SQLException{
+		try {
+			pStmt = conn.prepareStatement("SELECT Salt FROM Credentials WHERE ID = ?");
+			pStmt.setInt(1, ID);
+			rs = pStmt.executeQuery();
+			rs.next();
+			byte[] output = rs.getBytes("Salt");
+			pStmt.close();
+			return output;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean setUsername(int ID, String username) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("UPDATE Credentials SET Username = ? WHERE ID = ?");
 			pStmt.setString(1, username);
@@ -107,7 +126,7 @@ public class Database {
 		}
 	}
 	
-	public boolean setEmail(int ID, String email) {
+	public boolean setEmail(int ID, String email) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("UPDATE Credentials SET Email = ? WHERE ID = ?");
 			pStmt.setString(1, email);
@@ -121,10 +140,10 @@ public class Database {
 		}
 	}
 	
-	public boolean setPassword(int ID, String password) {
+	public boolean setPassword(int ID, byte[] password) throws SQLException{
 		try {
 			pStmt = conn.prepareStatement("UPDATE Credentials SET Password = ? WHERE ID = ?");
-			pStmt.setString(1, password);
+			pStmt.setBytes(1, password);
 			pStmt.setInt(2, ID);
 			pStmt.executeUpdate();
 			pStmt.close();

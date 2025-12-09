@@ -7,58 +7,58 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-import musicPlayer.frontEnd.PanelController;
+import musicPlayer.frontEnd.FrameController;
 
 public class ChangePanelButton extends JButton implements ActionListener{
 
 	private static final long serialVersionUID = -8239458504502982023L;
 	
-	protected PanelController controller;
+//	protected FrameController controller;
 	protected int panelID;
 
-	public ChangePanelButton(PanelController controller, int panelID) {
+	public ChangePanelButton(int panelID) {
 		super();
 		this.panelID = panelID;
-		this.controller = controller;
+//		this.controller = controller;
 		setFocusable(false);
 		addActionListener(this);
 	}
 
-	public ChangePanelButton(Icon icon, PanelController controller, int panelID) {
+	public ChangePanelButton(Icon icon, int panelID) {
 		super(icon);
 		this.panelID = panelID;
-		this.controller = controller;
+//		this.controller = controller;
 		setFocusable(false);
 		addActionListener(this);
 	}
 
-	public ChangePanelButton(String text, PanelController controller, int panelID) {
+	public ChangePanelButton(String text, int panelID) {
 		super(text);
 		this.panelID = panelID;
-		this.controller = controller;
+//		this.controller = controller;
 		setFocusable(false);
 		addActionListener(this);
 	}
 
-	public ChangePanelButton(Action a, PanelController controller, int panelID) {
+	public ChangePanelButton(Action a, int panelID) {
 		super(a);
 		this.panelID = panelID;
-		this.controller = controller;
+//		this.controller = controller;
 		setFocusable(false);
 		addActionListener(this);
 	}
 
-	public ChangePanelButton(String text, Icon icon, PanelController controller, int panelID) {
+	public ChangePanelButton(String text, Icon icon, int panelID) {
 		super(text, icon);
 		this.panelID = panelID;
-		this.controller = controller;
+//		this.controller = controller;
 		setFocusable(false);
 		addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		controller.changePanel(panelID);
+		FrameController.changePanel(panelID);
 		
 	}
 
